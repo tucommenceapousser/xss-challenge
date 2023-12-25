@@ -1,1 +1,0 @@
-encodeURIComponent('<img src="does-not-exist" onerror="alert(\'hi!\')">');
