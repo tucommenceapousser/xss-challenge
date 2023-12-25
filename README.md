@@ -1,3 +1,6 @@
+
+
+
 # Cross-site Scripting (XSS)
 
 Example cross-site scripting vulnerabilities in action.
@@ -21,13 +24,13 @@ For Linux and Mac users, open Terminal.
 
 Now let's get started. In your terminal program, use git to download the project:
 ```bash
-git clone https://github.com/Learn-by-doing/xss.git
+git clone https://github.com/tucommenceapousser/xss-challenge.git
 ```
-If successful, a new folder named `xss` should have been created.
+If successful, a new folder named `xss-challenge` should have been created.
 
 Change directory into the new folder:
 ```bash
-cd xss
+cd xss-challenge
 ```
 
 Install the project's dependencies using npm:
@@ -43,6 +46,16 @@ If successful, you should see the following message: `Server listening at localh
 
 You should see a simple search form. Enter some text then press enter (or click the "search" button). Notice how the search query you entered is shown in the page. This form might be vulnerable to an XSS attack. So let's test it ;)
 
+## Clone and Run
+
+### Replit
+[![Run on Replit](https://replit.com/badge/github/tucommenceapousser/xss-challenge)](https://replit.com/github/tucommenceapousser/xss-challenge)
+
+### Glitch
+[![Remix on Glitch](https://img.shields.io/badge/remix%20on-Glitch-blue.svg)](https://glitch.com/edit/#!/remix/xss-challenge)
+
+## Demo
+[Explore the XSS Challenge Demo](https://xss-trkn.replit.app)
 
 ## What is XSS?
 
@@ -59,18 +72,18 @@ Open the developer tools in your browser (F12) and open the "Console" sub-tab.
 
 Copy/paste the following code into the console and run it:
 ```js
-encodeURIComponent('<img src="does-not-exist" onerror="alert(\'hi!\')">');
+encodeURIComponent('<img src="does-not-exist" onerror="alert(\'XSS by kikoo\')">');
 ```
 
 ![](screenshots/xss-screenshot-001.png)
 
 Copy the output and paste it into the address bar so that the URL looks like this:
 ```
-http://localhost:3000/?q=%3Cimg%20src%3D%22does-not-exist%22%20onerror%3D%22alert('hi!')%22%3E
+http://localhost:3000/?q=%3Cimg%20src%3D%22does-not-exist%22%20onerror%3D%22alert('XSS%20by%20kikoo')%22%3E
 ```
-Or you can click [this link](http://localhost:3000/?q=%3Cimg%20src%3D%22does-not-exist%22%20onerror%3D%22alert('hi')%22%3E).
+Or you can click [this link](http://localhost:3000/?q=%3Cimg%20src%3D%22does-not-exist%22%20onerror%3D%22alert('XSS%20by%20kikoo')%22%3E).
 
-If successful, you should see an alert pop-up that says "hi!".
+If successful, you should see an alert pop-up that says "XSS by kikoo".
 
 Let's see what else we can do..
 
@@ -83,9 +96,9 @@ Open the "Application" sub-tab in your browser's developer tools. Under "Storage
 
 Notice how there is a cookie named "connect.sid". This is a session cookie set by our local web server. Is it possible for us to access this via the XSS vulnerability? Let's try. Repeat the steps from the "Proof of Concept" section above, but with the following code:
 ```html
-<img src="does-not-exist" onerror="alert(document.cookie)">
+<img src%3D"does-not-exist" onerror%3D"prompt(%27xss by trkn%27,document.cookie)">
 ```
-Encode the above HTML and use it as the search query, or [try this link](http://localhost:3000/?q=%3Cimg%20src%3D%22does-not-exist%22%20onerror%3D%22alert(document.cookie)%22%3E).
+Encode the above HTML and use it as the search query, or [try this link](http://localhost:3000/?q=%3Cimg%20src%3D%22does-not-exist%22%20onerror%3D%22prompt(%27xss%20by%20trkn%27,document.cookie)%22%3E).
 
 If successful, you should see the contents of the session cookie printed in an alert pop-up.
 
