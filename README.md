@@ -56,6 +56,7 @@ You should see a simple search form. Enter some text then press enter (or click 
 
 ## Demo
 [Explore the XSS Challenge Demo](https://xss-trkn.replit.app)
+[Explore the XSS Challenge Demo](https://xss-trhacknon.glitch.me)
 
 ## What is XSS?
 

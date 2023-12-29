@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="keywords" content="XSS, hacking, challenge, TRHACKNON">
+        <meta name="title" content="XSS Challenge by TRHACKNON">
+        <meta name="description" content="Can you conquer this XSS challenge by TRHACKNON? Search and find out!">
+        <meta property="og:title" content="XSS Challenge by TRHACKNON">
+        <meta property="og:description" content="Can you conquer this XSS challenge by TRHACKNON? Search and find out!">
+        <meta property="og:image" content="https://static.trkn.repl.co/xssch.jpg">
+        <meta property="og:url" content="https://xss-challenge.trkn.repl.co">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:title" content="XSS Challenge by TRHACKNON">
+        <meta name="twitter:description" content="Can you conquer this XSS challenge by TRHACKNON? Search and find out!">
+        <meta name="twitter:image" content="https://static.trkn.repl.co/xssch.jpg">
+        <link rel="icon" href="https://static.trkn.repl.co/hack.ico" type="image/x-icon">
+        <title>XSS Challenge by TRHACKNON</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+        <style>
+                body {
+                        background-color: #111;
+                        color: #FF6347;
+                        font-family: 'Courier New', monospace;
+                        margin: 20px;
+                        text-align: center;
+                }
+
+                h1 {
+                        font-size: 36px;
+                        background-image: linear-gradient(45deg, violet, indigo, blue, green, yellow, orange, red);
+                        -webkit-background-clip: text;
+                        color: transparent;
+                        display: inline-block;
+                        padding: 10px;
+                        margin-bottom: 20px;
+                }
+
+                form {
+                        margin-bottom: 20px;
+                }
+
+                input {
+                        padding: 10px;
+                        font-size: 16px;
+                        border: 2px solid #FF0000;
+                        background-color: #FFF000;
+                        color: #FF0000;
+                }
+
+                input[type="submit"] {
+                        cursor: pointer;
+                        animation: blink 0.5s infinite alternate;
+                }
+
+                #results {
+                        border: 2px solid #FF6347;
+                        padding: 20px;
+                        margin-top: 20px;
+                        animation: fadeInUp; /* Add animate.css class for fade in animation */
+                }
+
+                li {
+                        color: #00BFFF;
+                }
+
+                #xss-image {
+                        width: 100%;
+                        max-width: 600px;
+                        margin: 20px auto;
+                        border: 4px solid #FF6347;
+                        box-shadow: 0 0 20px rgba(255, 99, 71, 0.7);
+                }
+                #footer {
+                position: relative;
+                bottom: 0;
+                width: 100%; /* Assurez-vous qu'il occupe toute la largeur */
+                background-color: #333; /* Couleur de fond */
+                color: #ff9900;
+                padding: 20px; /* Ajoutez un espacement au contenu du footer */
+                }
+                #content-container {
+                position: relative;
+                margin-bottom: 100px; /* Ajustez la hauteur en fonction de la hauteur de votre footer */
+                }
+                .custom-alert {
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background-color: #ff9900; /* Couleur de fond */
+                color: #fff; /* Couleur du texte */
+                padding: 20px;
+                border-radius: 10px;
+                text-align: center;
+                z-index: 9999; /* Assurez-vous qu'il est au-dessus de tout le contenu */
+                animation: blink 0.5s infinite alternate; /* Animation de clignotement */
+                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /* Ombre légère */
+                }
+                .alert-image {
+                max-width: 100%; /* Ajustez la largeur si nécessaire */
+                height: auto;
+                }
+                @keyframes blink {
+                0% {
+                opacity: 1;
+                }
+                100% {
+                opacity: 0;
+                }
+                }
+        </style>
+</head>
+<body>
+
+        <h1 class="animate__animated animate__pulse">XSS Challenge by TRHACKNON</h1><br>
+
+
+<br>
+<font color="red"><a href="https://xss-challenge-trkn.replit.app">1st lab : https://xss-challenge-trkn.replit.app</a>
+<br>
+<a href="https://xss-challenge.trkn.repl.co">2nd lab : https://xss-challenge.trkn.repl.co</a>
+<br><a href="https://xss-trhacknon.glitch.me">3rd lab : https://xss-trhacknon.glitch.me</a>
+<br></font><br>
+        <form action="" method="GET">
+                <input type="text" name="q" placeholder="Search here...">
+                <input type="submit" value="Search">
+        </form>
+
+        <div id="results" class="animate__animated animate__fadeInUp"></div>
+
+        <img id="xss-image" src="https://static-trkn.replit.app/xssch.jpg" alt="XSS Challenge Preview">
+
+        <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                        var q = getQueryParameter('q');
+
+                        if (q) {
+                                // Extract the name specified by the visitor in a case-insensitive way
+                            var nameMatch = q.match(/(?:xss(?:\s+(?:by|par))?|touch(?:\s+(?:by|par))?|touched(?:\s+(?:by|par))?)\s+(\w+)/i);
+
+                            if (nameMatch && nameMatch[1]) {
+                                    var visitorName = nameMatch[1];
+                                    // Replace the specified pattern with 'bravo' and the extracted name
+                                    q = q.replace(/(?:xss(?:\s+(?:by|par))?|touch(?:\s+(?:by|par))?|touched(?:\s+(?:by|par))?)\s+\w+/i, 'trhacknon congratulates you and validates your challenge, if the cookie is printed else print the cookie ' + visitorName);
+                            }
+
+                                search(q, function(error, results) {
+                                        showQueryAndResults(q, results);
+                                });
+                        }
+                });
+
+                function search(q, callback) {
+                        var results = [
+                                'this is just a little XSS challenge on an express web app by TRHACKNON',
+                                'Rules: print your name and cookie ! ',
+                                'send me the proof of concept'
+                        ];
+                        callback(null, results);
+                }
+
+                function showQueryAndResults(q, results) {
+                        var resultsEl = document.querySelector('#results');
+                        var html = '<p>Your search query:</p><pre>' + q + '</pre><ul>';
+
+                        for (var index = 0; index < results.length; index++) {
+                                html += '<li>' + results[index] + '</li>';
+                        }
+
+                        html += '</ul>';
+                        resultsEl.innerHTML = html;
+
+                        // Display the XSS alert with the replaced name
+                        alert('welcome in trhacknon\'s challenge');
+                }
+
+                function getQueryParameter(name) {
+                        var pairs = window.location.search.substring(1).split('&');
+                        var pair;
+
+                        for (var index = 0; index < pairs.length; index++) {
+                                pair = pairs[index].split('=');
+
+                                if (decodeURIComponent(pair[0]) === name) {
+                                        return decodeURIComponent(pair[1]);
+                                }
+                        }
+
+                        return false;
+                }
+        </script>        <script type="text/javascript">
+        (function () {
+        var options = {
+        telegram: "trknfriendsBot", // Telegram bot username
+        telegram_color: "#129BF4", // Telegram button color
+        whatsapp: "+18056009130", // WhatsApp number
+        call_to_action: "Im trhacknon message me if you want", // Call to action
+        button_color: "#E74339", // Color of button
+        position: "right", // Position may be 'right' or 'left'
+        order: "telegram,whatsapp", // Order of buttons
+        pre_filled_message: "trhacknon replit project", // WhatsApp pre-filled message
+        };
+        var proto = 'https:', host = "getbutton.io", url = proto + '//static.' + host;
+        var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true; s.src = url + '/widget-send-button/js/init.js';
+        s.onload = function () { WhWidgetSendButton.init(host, proto, options); };
+        var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(s, x);
+        })();
+        </script>
+        <!-- /GetButton.io widget -->
+
+        <script type='text/javascript'>
+        // Anti Clic Droit Personnalisé
+        var message = "Clic droit interdit par trhacknon. Désolé !"; // Message personnalisé
+        function clickIE4() {
+        if (2 == event.button) {
+        showAlert(message);
+        return false;
+        }
+        }
+        function clickNS4(e) {
+        if ((document.layers || document.getElementById && !document.all) && (2 == e.which || 3 == e.which)) {
+        showAlert(message);
+        return false;
+        }
+        }
+        document.layers ? (document.captureEvents(Event.MOUSEDOWN), document.onmousedown = clickNS4) : document.all && !document.getElementById && (document.onmousedown = clickIE4);
+        document.oncontextmenu = new Function("showAlert(message); return false;");
+        function showAlert(message) {
+        var alertBox = document.createElement("div");
+        alertBox.className = "custom-alert";
+        alertBox.innerHTML = message;
+        var alertImage = document.createElement("img");
+        alertImage.src = "https://c.top4top.io/p_28244rnme0.jpeg";
+        alertImage.className = "alert-image";
+        alertBox.appendChild(alertImage);
+        // Ajouter l'audio
+        var audio = document.createElement("audio");
+        audio.src = "https://d.top4top.io/m_2824akq1l0.mp3"; // Chemin du fichier audio
+        audio.autoplay = true; // Lecture automatique de l'audio
+        alertBox.appendChild(audio);
+        document.body.appendChild(alertBox);
+        setTimeout(function () {
+        document.body.removeChild(alertBox);
+        }, 4000); // Disparaît après 4 secondes (ajustez la durée selon vos préférences)
+        }
+        </script></body><footer id="footer">
+        <center><a href="https://www.wieistmeineip.de/cometo/?en"><img src="https://www.wieistmeineip.de/ip-address/?size=468x60" scrolling="yes" border="3" width="470" height="60" alt="IP"></a></center> </footer>
+
+</body>
+</html>
