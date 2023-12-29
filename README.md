@@ -55,8 +55,8 @@ You should see a simple search form. Enter some text then press enter (or click 
 [![Remix on Glitch](https://img.shields.io/badge/remix%20on-Glitch-blue.svg)](https://glitch.com/edit/#!/remix/xss-challenge)
 
 ## Demo
-[Explore the XSS Challenge Demo](https://xss-trkn.replit.app)
-[Explore the XSS Challenge Demo](https://xss-trhacknon.glitch.me)
+[Explore the XSS Challenge Demo](https://xss-challenge-trkn.replit.app)
+[Explore the XSS Challenge Demo](https://xss-challenge.trkn.repl.co)
 
 ## What is XSS?
 
